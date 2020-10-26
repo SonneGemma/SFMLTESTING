@@ -46,7 +46,7 @@ void Character::change_character(character_type character)
 	switch (character)
 	{
 	case character_type::Knight:
-		if (!Texture.loadFromFile("../SFMLTESTING/Characters/knight_char1.png")) std::cout << "Fail!";
+		if (!Texture.loadFromFile("../SFMLTESTING/Characters/knight_char.png")) std::cout << "Fail!";
 		break;
 	case character_type::Mage:
 		if (!Texture.loadFromFile("../SFMLTESTING/Characters/wizard_char.png")) std::cout << "Fail!";
