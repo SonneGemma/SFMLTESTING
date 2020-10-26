@@ -46,7 +46,7 @@ void Character::change_character(character_type character)
 	switch (character)
 	{
 	case character_type::Knight:
-		if (!Texture.loadFromFile("../SFMLTESTING/Characters/knight_char.png")) std::cout << "Fail!";
+		if (!Texture.loadFromFile("../SFMLTESTING/Characters/knight_char1.png")) std::cout << "Fail!";
 		break;
 	case character_type::Mage:
 		if (!Texture.loadFromFile("../SFMLTESTING/Characters/wizard_char.png")) std::cout << "Fail!";
@@ -65,8 +65,14 @@ void Character::change_character(character_type character)
 
 void Character::move(movement direction, float frame)
 {
+	//IDLE
 	if (direction == movement::IDLE)
-	this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 2), 0, character_size_x, character_size_y));
+	{
+		if (this->idleType == idle_type::STANDARD)
+			this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 2), 0, character_size_x, character_size_y));
+		else if (this->idleType == idle_type::JUMPIMG)
+			this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 2), character_size_y * 2, character_size_x, character_size_y));
+	}
 
 	//WASD
 	if (direction == movement::UP)
@@ -94,6 +100,11 @@ void Character::move(movement direction, float frame)
 		this->shape.setScale(10, 10);
 		this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 4), character_size_y, character_size_x, character_size_y));
 	}
+}
+
+void Character::change_idle_type(idle_type idleType)
+{
+	this->idleType = idleType;
 }
 
 sf::RectangleShape Character::getShape()

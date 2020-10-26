@@ -27,6 +27,7 @@ int main()
         }
 
         idle = true;
+
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) { player_1->move(movement::UP, frame); idle = false; }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) { player_1->move(movement::LEFT, frame); idle = false;  }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) { player_1->move(movement::DOWN, frame); idle = false; }
@@ -36,6 +37,10 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) { player_1->change_character(character_type::Knight); }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::N)) { player_1->change_character(character_type::Rogue); }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) { player_1->change_character(character_type::Mage); }
+
+        //testing
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) { player_1->change_idle_type(idle_type::JUMPIMG); }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) { player_1->change_idle_type(idle_type::STANDARD); }
 
 
         window.clear();
