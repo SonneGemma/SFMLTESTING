@@ -41,7 +41,6 @@ int main()
         window.clear();
         window.draw(player_1->getShape());
         window.display();
-        //lol
     }
 
     return 0;
