@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream> 
 #include "Character.h"
+#include "Enemy.h"
+#include "Player.h"
 
 int main()
 {
@@ -10,8 +12,7 @@ int main()
     float frame = 0.0f;
     bool idle;
 
-    Character* player_1 = new Character(character_type::Knight, sf::Vector2f{ 100, 100 });
-
+    Player* player_1 = new Player(character_type::Knight, sf::Vector2f{ 100, 100 }, 3.0f);
 
     while (window.isOpen())
     {

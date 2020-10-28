@@ -1,30 +1,12 @@
 #include <iostream>
 #include "Character.h"
 
-Character::Character()
+void Character::Create(std::string file, sf::Vector2f position, float velocity)
 {
-	Character::Create(character_type::undefined, sf::Vector2f{ 100, 100 });
-}
-
-Character::Character(character_type type)
-{
-	Character::Create(type, sf::Vector2f { 100, 100 });
-}
-
-Character::Character(character_type type, sf::Vector2f position)
-{
-	Character::Create(type, position);
-}
-
-void Character::Create(character_type type, sf::Vector2f position)
-{
-	this->scale = 10;
-
-	this->type = type;
-
 	this->position = position;
+	this->velocity = velocity;
 
-	this->change_character(this->type);
+	if (!Texture.loadFromFile(file)) std::cout << "Fail!";
 
 	this->shape = sf::RectangleShape();
 	this->shape.setSize(sf::Vector2f(character_size_x, character_size_y));
@@ -34,33 +16,6 @@ void Character::Create(character_type type, sf::Vector2f position)
 
 	this->shape.setPosition(position);
 	this->shape.setScale(scale, scale);
-}
-
-Character::~Character()
-{
-
-}
-
-void Character::change_character(character_type character)
-{
-	switch (character)
-	{
-	case character_type::Knight:
-		if (!Texture.loadFromFile("../SFMLTESTING/Characters/knight_char.png")) std::cout << "Fail!";
-		break;
-	case character_type::Mage:
-		if (!Texture.loadFromFile("../SFMLTESTING/Characters/wizard_char.png")) std::cout << "Fail!";
-		break;
-	case character_type::Rogue:
-		if (!Texture.loadFromFile("../SFMLTESTING/Characters/dino_char.png")) std::cout << "Fail!";
-		break;
-	case character_type::undefined:
-		std::cout << "Undefined!";
-		break;
-	default:
-		std::cout << "Fail!";
-		break;
-	}
 }
 
 void Character::move(movement direction, float frame)
@@ -77,27 +32,27 @@ void Character::move(movement direction, float frame)
 	//WASD
 	if (direction == movement::UP)
 	{
-		this->shape.move((float)0.0, (float)-5.0);
+		this->shape.move(0.0f, -this->velocity);
 		this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 4), character_size_y, character_size_x, character_size_y));
 	}
 
 	if (direction == movement::DOWN)
 	{
-		this->shape.move((float)0.0, (float)+5.0);
+		this->shape.move(0.0f, +this->velocity);
 		this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 4), character_size_y, character_size_x, character_size_y));
 	}
 
 	if (direction == movement::LEFT)
 	{
-		this->shape.move((float)-5.0, (float)0.0);
-		this->shape.setScale(-10, 10);
+		this->shape.move(-this->velocity, 0.0f);
+		this->shape.setScale(-this->scale, this->scale);
 		this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 4), character_size_y, character_size_x, character_size_y));
 	}
 
 	if (direction == movement::RIGHT)
 	{
-		this->shape.move((float)+5.0, (float)0.0);
-		this->shape.setScale(10, 10);
+		this->shape.move(+this->velocity, 0.0f);
+		this->shape.setScale(this->scale, this->scale);
 		this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 4), character_size_y, character_size_x, character_size_y));
 	}
 }
