@@ -1,10 +1,11 @@
 #include "Enemy.h"
 
 //TODO: llenar
+//TODO: Resolver problema con idles (que cada IDLE de cada personaje sea unico).
 std::map<enemy_type, std::string> Enemy::enemyTextures =
 {
 	{ enemy_type::Undefined, "" },
-	{ enemy_type::Cry, "" },
+	{ enemy_type::Cry, "../SFMLTESTING/Characters/cry.png" },
 	{ enemy_type::Boar, "" },
 	{ enemy_type::Red, "" },
 	{ enemy_type::Fungus, "" },

@@ -11,8 +11,10 @@ int main()
 
     float frame = 0.0f;
     bool idle;
+    bool idle_enemies;
 
     Player* player_1 = new Player(character_type::Knight, sf::Vector2f{ 100, 100 }, 3.0f);
+    Enemy* enemy_1 = new Enemy(enemy_type::Cry, sf::Vector2f{ 400, 400 }, 2.0f);
 
     while (window.isOpen())
     {
@@ -28,6 +30,7 @@ int main()
         }
 
         idle = true;
+        idle_enemies = true;
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) { player_1->move(movement::UP, frame); idle = false; }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) { player_1->move(movement::LEFT, frame); idle = false;  }
@@ -43,9 +46,11 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)) { player_1->change_idle_type(idle_type::JUMPIMG); }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::C)) { player_1->change_idle_type(idle_type::STANDARD); }
 
+        if (idle_enemies) enemy_1->move(movement::IDLE, frame);
 
         window.clear();
         window.draw(player_1->getShape());
+        window.draw(enemy_1->getShape());
         window.display();
     }
 
