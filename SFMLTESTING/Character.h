@@ -3,7 +3,7 @@
 
 
 enum class movement { IDLE, UP, LEFT, DOWN, RIGHT };
-enum class idle_type { STANDARD, JUMPIMG };
+enum class idle_type { STANDARD, JUMPING };
 const int character_size_x = 15;
 const int character_size_y = 27;
 

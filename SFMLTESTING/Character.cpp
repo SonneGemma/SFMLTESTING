@@ -25,7 +25,7 @@ void Character::move(movement direction, float frame)
 	{
 		if (this->idleType == idle_type::STANDARD)
 			this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 2), 0, character_size_x, character_size_y));
-		else if (this->idleType == idle_type::JUMPIMG)
+		else if (this->idleType == idle_type::JUMPING)
 			this->shape.setTextureRect(sf::IntRect(character_size_x * ((int)frame % 2), character_size_y * 2, character_size_x, character_size_y));
 	}
 
